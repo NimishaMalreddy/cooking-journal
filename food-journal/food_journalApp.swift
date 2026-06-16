@@ -1,11 +1,5 @@
-//
-//  food_journalApp.swift
-//  food-journal
-//
-//  Created by Nimisha on 6/16/26.
-//
-
 import SwiftUI
+import SwiftData
 
 @main
 struct food_journalApp: App {
@@ -13,5 +7,6 @@ struct food_journalApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: JournalEntry.self)
     }
 }
