@@ -15,7 +15,7 @@ struct CalendarView: View {
 
     var body: some View {
         ZStack {
-            Color(UIColor.systemGray6).ignoresSafeArea()
+            Color(hex: "#f4f4f4").ignoresSafeArea()
 
             VStack(spacing: 0) {
                 HStack(alignment: .top) {
@@ -131,8 +131,8 @@ struct MonthCalendar: View {
             HStack {
                 ForEach(weekdaySymbols.indices, id: \.self) { i in
                     Text(weekdaySymbols[i])
-                        .font(.system(size: 13, weight: .medium))
-                        .foregroundStyle(i == todayColumnIndex ? Color.red : Color.secondary)
+                        .font(.custom("InstrumentSans-Regular", size: 16))
+                        .foregroundStyle(i == todayColumnIndex ? Color(hex: "#d00003") : Color.black)
                         .frame(maxWidth: .infinity)
                 }
             }
@@ -199,7 +199,7 @@ struct DayCell: View {
                         .frame(width: size, height: size)
                         .clipShape(Circle())
                 } else if isToday {
-                    Circle().fill(Color.red)
+                    Circle().fill(Color(hex: "#d00003"))
                 } else if isFuture {
                     Circle()
                         .fill(Color.clear)

@@ -10,7 +10,7 @@ struct ViewEntriesView: View {
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
-            Color(UIColor.systemGray6).ignoresSafeArea()
+            Color(hex: "#f4f4f4").ignoresSafeArea()
 
             VStack(spacing: 0) {
                 ZStack {
@@ -93,23 +93,29 @@ struct DateLabel: View {
 
     var body: some View {
         HStack(alignment: .bottom) {
-            VStack(alignment: .leading, spacing: -4) {
+            VStack(alignment: .leading, spacing: 0) {
                 Text(day)
-                    .font(.system(size: 120, weight: .black))
-                    .foregroundStyle(.primary)
-                Text(month)
-                    .font(.system(size: 28, weight: .heavy))
-                    .foregroundStyle(.primary)
-                Text(year)
-                    .font(.system(size: 24, weight: .bold))
-                    .foregroundStyle(.secondary)
+                    .font(.custom("Poppins-Medium", size: 128))
+                    .foregroundStyle(.black)
+                    .lineLimit(1)
+                    .padding(.bottom, -16)
+                HStack(alignment: .bottom, spacing: 0) {
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text(month)
+                            .font(.custom("InstrumentSans-Bold", size: 40))
+                            .foregroundStyle(.black)
+                        Text(year)
+                            .font(.custom("InstrumentSans-Bold", size: 40))
+                            .foregroundStyle(Color(hex: "#bdbdbd"))
+                    }
+                    Spacer()
+                    Text(weekday)
+                        .font(.custom("InstrumentSans-Bold", size: 24))
+                        .foregroundStyle(Color(hex: "#bdbdbd"))
+                        .padding(.bottom, 6)
+                }
             }
-            Spacer()
-            Text(weekday)
-                .font(.system(size: 22, weight: .medium))
-                .foregroundStyle(.secondary)
-                .padding(.bottom, 8)
         }
-        .padding(.horizontal, 28)
+        .padding(.horizontal, 24)
     }
 }
