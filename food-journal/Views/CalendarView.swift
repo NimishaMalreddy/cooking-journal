@@ -122,19 +122,23 @@ struct MonthCalendar: View {
         return days
     }
 
+    private var todayColumnIndex: Int {
+        calendar.component(.weekday, from: today) - 1
+    }
+
     var body: some View {
         VStack(spacing: 0) {
             HStack {
                 ForEach(weekdaySymbols.indices, id: \.self) { i in
                     Text(weekdaySymbols[i])
                         .font(.system(size: 13, weight: .medium))
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(i == todayColumnIndex ? Color.red : Color.secondary)
                         .frame(maxWidth: .infinity)
                 }
             }
             .padding(.bottom, 8)
 
-            LazyVGrid(columns: columns, spacing: 8) {
+            LazyVGrid(columns: columns, spacing: 6) {
                 ForEach(daysInMonth.indices, id: \.self) { i in
                     if let date = daysInMonth[i] {
                         DayCell(
@@ -182,9 +186,6 @@ struct DayCell: View {
 
     private var isToday: Bool { calendar.startOfDay(for: date) == today }
     private var isFuture: Bool { calendar.startOfDay(for: date) > today }
-    private var dayNumber: String {
-        let f = DateFormatter(); f.dateFormat = "d"; return f.string(from: date)
-    }
 
     var body: some View {
         GeometryReader { geo in
@@ -207,11 +208,6 @@ struct DayCell: View {
                     Circle().fill(Color.primary)
                 }
 
-                if thumbnail == nil {
-                    Text(dayNumber)
-                        .font(.system(size: size * 0.32, weight: .semibold))
-                        .foregroundStyle(isToday || (!isFuture && !hasEntries) ? .white : Color(UIColor.systemGray3))
-                }
             }
             .frame(width: size, height: size)
             .scaleEffect(pressed ? 0.88 : 1)

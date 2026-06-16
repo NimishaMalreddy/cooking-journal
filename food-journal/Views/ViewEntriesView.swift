@@ -95,7 +95,7 @@ struct DateLabel: View {
         HStack(alignment: .bottom) {
             VStack(alignment: .leading, spacing: -4) {
                 Text(day)
-                    .font(.system(size: 80, weight: .black))
+                    .font(.system(size: 120, weight: .black))
                     .foregroundStyle(.primary)
                 Text(month)
                     .font(.system(size: 28, weight: .heavy))
