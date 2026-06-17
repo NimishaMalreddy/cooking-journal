@@ -92,28 +92,27 @@ struct DateLabel: View {
     }
 
     var body: some View {
-        HStack(alignment: .bottom) {
-            VStack(alignment: .leading, spacing: 0) {
-                Text(day)
-                    .font(.custom("Poppins-Medium", size: 128))
-                    .foregroundStyle(.black)
-                    .lineLimit(1)
-                    .padding(.bottom, -16)
-                HStack(alignment: .bottom, spacing: 0) {
-                    VStack(alignment: .leading, spacing: 0) {
-                        Text(month)
-                            .font(.custom("InstrumentSans-Bold", size: 40))
-                            .foregroundStyle(.black)
-                        Text(year)
-                            .font(.custom("InstrumentSans-Bold", size: 40))
-                            .foregroundStyle(Color(hex: "#bdbdbd"))
-                    }
-                    Spacer()
-                    Text(weekday)
-                        .font(.custom("InstrumentSans-Bold", size: 24))
+        VStack(alignment: .leading, spacing: -36) {
+            Text(day)
+                .font(.custom("Poppins-Medium", size: 128))
+                .foregroundStyle(.black)
+                .lineLimit(1)
+                .fixedSize()
+
+            HStack(alignment: .bottom, spacing: 0) {
+                VStack(alignment: .leading, spacing: -4) {
+                    Text(month)
+                        .font(.custom("InstrumentSans-Bold", size: 40))
+                        .foregroundStyle(.black)
+                    Text(year)
+                        .font(.custom("InstrumentSans-Bold", size: 40))
                         .foregroundStyle(Color(hex: "#bdbdbd"))
-                        .padding(.bottom, 6)
                 }
+                Spacer()
+                Text(weekday)
+                    .font(.custom("InstrumentSans-Bold", size: 24))
+                    .foregroundStyle(Color(hex: "#bdbdbd"))
+                    .padding(.bottom, 10)
             }
         }
         .padding(.horizontal, 24)
