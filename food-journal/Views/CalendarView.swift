@@ -23,24 +23,26 @@ struct CalendarView: View {
                     Button(action: { showAddEntry = true }) {
                         Image(systemName: "plus")
                             .font(.system(size: 22, weight: .semibold))
-                            .foregroundStyle(.primary)
+                            .foregroundStyle(.black)
                             .frame(width: 44, height: 44)
                     }
+                    .buttonStyle(.plain)
                 }
-                .padding(.horizontal, 20)
+                .padding(.horizontal, 24)
                 .padding(.top, 8)
 
-                DateLabel(date: today)
-                    .padding(.top, 4)
+                Spacer().frame(height: 120)
 
-                Spacer().frame(height: 32)
+                DateLabel(date: today)
+
+                Spacer().frame(height: 40)
 
                 MonthCalendar(
                     entries: allEntries,
                     today: today,
                     onTap: handleDateTap
                 )
-                .padding(.horizontal, 20)
+                .padding(.horizontal, 24)
 
                 Spacer()
             }
@@ -138,7 +140,7 @@ struct MonthCalendar: View {
             }
             .padding(.bottom, 8)
 
-            LazyVGrid(columns: columns, spacing: 6) {
+            LazyVGrid(columns: columns, spacing: 0) {
                 ForEach(daysInMonth.indices, id: \.self) { i in
                     if let date = daysInMonth[i] {
                         DayCell(
